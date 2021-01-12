@@ -1,0 +1,6 @@
+<%= simple_form_for :search, url: payments_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+  <%= f.input :to_from, input_html: {value: "", placeholder: "Beneficiary Name", class: 'form-control mx-1'} %>
+  <%= f.input :status, input_html: {value: "", placeholder: "Debit/Credit", class: 'form-control mx-1'} %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  <%= link_to "Clear", payments_path, class: 'btn btn-warning ml-2' %>
+<% end %>

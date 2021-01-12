@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light header">
+    <%= link_to payments_path, class: 'btn btn-info m-10' do %>
+      <span>All Payments</span>
+    <% end %>
+   <%= link_to new_payment_path, class: 'btn btn-info m-10' do %>
+      <span>Add Payment</span>
+    <% end %>
+    <div class="div-inline">
+      <%= link_to destroy_admin_session_path, method: :delete, class: 'btn  bg-danger m-10' do %>
+        <span>Logout</span>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,81 @@
+<div class="row py-4">
+  <div class=" col-md-6 col-12">
+    <h1>All Payments</h1>
+  </div>
+  <div class=" col-md-6 col-12">
+    <%= render 'searchForm' %>
+  </div>
+</div>
+
+<div class="row border-bottom pb-4">
+  <div class="col-12 col-md-2">
+    <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Total Payments <span class="float-right"><%= @allCount %></span></div>
+        <div class="card-body">
+            <h1 class="card-title"><%= @allSum %></h1>
+        </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-2">
+    <div class="card text-white bg-success mb-3">
+        <div class="card-header">Total Credits <span class="float-right"><%= @allCreditCount %></span></div>
+        <div class="card-body">
+            <h1 class="card-title"><%= @allCreditSum %></h1>
+        </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-2">
+    <div class="card text-white bg-danger mb-3">
+        <div class="card-header">Total Debits <span class="float-right"><%= @allDebitCount %></span></div>
+        <div class="card-body">
+            <h1 class="card-title"><%= @allDebitSum %></h1>
+        </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-2">
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-header">Outstanding Amount</div>
+        <div class="card-body">
+            <h1 class="card-title"><%= @allCreditSum-@allDebitSum %></h1>
+        </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Purpose</th>
+      <th scope="col">To/From</th>
+      <th scope="col">Status</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <th scope="row"><%= payment.id %></th>
+        <td><%= payment.date %></td>
+        <td><%= payment.purpose %></td>
+        <td><%= payment.to_from %></td>
+        <td><%= payment.status %></td>
+        <td><%= payment.amount %></td>
+        <td><%= payment.created_at %></td>
+        <td>
+            <%= link_to edit_payment_path(payment), class: 'btn btn-info' do %>
+                <span>Edit</span>
+            <% end %>
+            <%= link_to payment_path(payment), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' do %>
+                <span>Delete</span>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @payments %>
